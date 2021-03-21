@@ -1,0 +1,131 @@
+(function(w){
+	function log(message) {
+		if (typeof GADebug !== 'undefined' && true === GADebug) {
+			console.log(message);
+		}
+	}
+
+	/**
+	 * IE 5.5+, Firefox, Opera, Chrome, Safari XHR object
+	 *
+	 * @param string url
+	 * @param object callback
+	 * @param mixed data
+	 * @param null x
+	 */
+	 /* Source: https://gist.github.com/Xeoncross/7663273 */
+	function requestAFR(url, callback, token, AFRMap, debugMode, x) {
+		try {
+			x = new(this.XMLHttpRequest || ActiveXObject)('MSXML2.XMLHTTP.3.0');
+			x.open('GET', url, 1);
+			x.setRequestHeader('Authorization', token);
+			x.setRequestHeader('X-Requested-With', 'Digiseg-GA-JSLib');
+			if( debugMode ) {
+				x.setRequestHeader('X-AFR-Debug', 'true');
+			}
+			x.setRequestHeader('Content-type', 'application/json');
+			x.onreadystatechange = function () {
+				x.readyState > 3 && callback && callback(x.responseText, AFRMap, x);
+			};
+			x.send()
+		} catch (e) {
+			window.console && console.log(e);
+		}
+	};
+
+	function parseAFRResponse(respRaw, AFRMap, x){
+		if("" === respRaw) {
+			log("Digiseg API - No data.")
+			return;
+		}
+
+		var resp = JSON.parse(respRaw);
+
+		if(resp.status == "no-data") {
+			log("Digiseg API - No Data")
+			return;
+		}
+
+		if(resp.status != "success"){
+			console.log("Digiseg API Error: " + resp.response);
+			return;
+		}
+		var AFR = resp.response;
+
+		var gapi = "auto"
+
+		if (typeof GAAPI !== 'undefined')  {
+			if (GAAPI === 'UA' || GAAPI === 'GTM') {
+				gapi = GAAPI
+			}
+		}
+
+		// Checks for presence of the GTM DataLayer object
+		if (typeof dataLayer !== "undefined" && (gapi === 'auto' || gapi === 'GTM')) {
+			log("Digiseg: Detected a DataLayer object")
+			submitDL(AFR);
+		} else if (typeof ga !== "undefined" && (gapi === 'auto' || gapi === 'UA')) {
+			log("Digiseg: Detected a Universal Analytics object")
+			submitUA(AFR, AFRMap);
+		} else {
+			console.log("Digiseg: Couldn't find neither Universal Analytics nor Google Tag Manager Data Layer. Giving up.");
+		}
+	}
+
+	// Data Layer / Google Tag Manager
+	function submitDL(AFR){
+		//AFR.nonInteraction = 1;
+		//var afr_data = JSON.stringify(AFR);
+		var afr_data = AFR;
+		afr_data.event = "Digiseg";
+		log("Pushing event to dataLayer: " + JSON.stringify(afr_data));
+		dataLayer.push(afr_data);
+	}
+
+	// Universal Analytics / ga.js
+	function submitUA(AFR, AFRMap){
+		var GAPayload = {'nonInteraction': 1};
+
+		for (var AFRKey in AFR) {
+			var CDKey = AFRMap[AFRKey]
+			GAPayload[CDKey] = AFR[AFRKey]
+		}
+
+		//We might have several trackers. Take the first one.
+		ga(function() {
+			var trackers = ga.getAll();
+			log(trackers);
+		
+			if (1 < trackers.length) {
+				var firstTracker = trackers[0];
+				var trackerName = firstTracker.a.data.values[":name"];
+
+				log("Sending CoreAudiences to tracker: " + trackerName);
+				ga(trackerName + '.send', 'event', 'Digiseg', 'CoreAudiences', GAPayload);
+			} else {
+				log("Sending CoreAudiences to default tracker ");
+				ga('send', 'event', 'Digiseg', 'CoreAudiences', GAPayload);
+			}
+		});
+
+	};
+
+	w.runDigiseg = function(APItoken, AFRVars){
+		var baseurl = "https://ga.digiseg-collect.net/?variables=";
+		var requrl = baseurl;
+		var debugMode = false;
+
+		for (var AFRKey in AFRVars) {
+			requrl += AFRKey + ",";
+		}
+		requrl = requrl.slice(0, -1);
+
+		if (typeof AFRDebug !== 'undefined')  {
+			if (AFRDebug === true) {
+				debugMode = true; 
+			}
+		}
+
+		requestAFR(requrl, parseAFRResponse, APItoken, AFRVars, debugMode);
+	}
+})(window);

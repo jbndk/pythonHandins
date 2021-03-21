@@ -1,0 +1,17 @@
+(function (Sentry) {
+	
+	var env = document.querySelector('body[data-environment]').getAttribute('data-environment');
+	Sentry.init({
+		dsn: 'https://137f336395c24ddaa4094b8ebb372e9f@o418058.ingest.sentry.io/5320056',
+		ignoreErrors: ['RangeError'],
+		environment: env,
+		beforeSend(event) {
+			if(event.exception){
+				var values = event.exception.values[0]
+				return (values.value === "Group is offline" || values.value === "Chat is already active") ? null : event;
+			}
+			return event;
+		}
+	});
+
+})(window.Sentry);

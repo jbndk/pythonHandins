@@ -1,0 +1,234 @@
+window.Adform.Tracking.TrackingPointId = 2869925;
+Adform.Tracking.CreateIframeElement("https://track.adform.net/serving/container/?pm=141717&lid=2869925&ctype=2&media=462032&rnd=1856554128&cpref=&loc=https%3a%2f%2fwww.edc.dk%2f");try{
+(function() {
+    var sagnr = location.search.split('sag=')[1];
+    if (sagnr) {
+        adf.track(141717, 'Mit EDC', {
+            itms: [{
+                productid: sagnr,
+                step: 2
+            }]
+        });
+    }
+})();
+(function(){
+	var adfUrl = location.href;
+	adf.track(141717,'URL', {
+		sv1: adfUrl
+	});
+})();
+(function() {
+    if (document.getElementById('ContentContentPlaceHolder_MainContentPlaceHolder_ContentPlaceHolder_FindBuyerSearchControl_ButtonSearch')) {
+        document.getElementById('ContentContentPlaceHolder_MainContentPlaceHolder_ContentPlaceHolder_FindBuyerSearchControl_ButtonSearch').onclick = function() {
+            adf.track(141717, 'Find kobere');
+        };
+    }
+})();
+(function(){
+    if (!window.adfCheckMirr && location.href.match(/sagsnr\=851/)){
+        var tpname = location.search.match(/sagsnr\=\d+/) && location.search.match(/sagsnr\=\d+/)[0];
+        adf.track(1130892, tpname);
+        window.adfCheckMirr = true;
+    }
+})();
+var adfVars = window.Adform.Tracking.Vars.Order || window.Adform.Tracking.Vars.Products || {};
+if (adfVars instanceof Array) {
+    adfVars = {itms: adfVars};
+};
+
+adf.track(945422, window.Adform.Tracking.TrackingPointName || window.Adform.Tracking.Vars.PageName || "unknown", adfVars);
+(function(){
+    if (location.href.match(/sagsnr\=851/)){
+        var tpname = location.search.match(/sagsnr\=\d+/) && location.search.match(/sagsnr\=\d+/)[0];
+        adf.track(1130892, tpname);
+    }
+})();
+(function(){
+    if (!window.adfCheckMirr && location.href.match(/sagsnr\=717/)){
+        var tpname = location.search.match(/sagsnr\=\d+/) && location.search.match(/sagsnr\=\d+/)[0];
+        adf.track(1378840, tpname);
+        window.adfCheckMirr = true;
+    }
+})();
+(function(){
+    if (location.href.match(/sagsnr\=874/)){
+        var tpname = location.search.match(/sagsnr\=\d+/) && location.search.match(/sagsnr\=\d+/)[0];
+        adf.track(1653563, tpname);
+    }
+})();
+(function(){
+    if (location.href.match(/sagsnr\=275/)){
+        var tpname = location.search.match(/sagsnr\=\d+/) && location.search.match(/sagsnr\=\d+/)[0];
+        adf.track(1119667, tpname);
+    }
+})();
+var axel = Math.random() + '';
+var aaxa = axel * 10000000000000;
+new Image().src="https://pubads.g.doubleclick.net/activity;dc_iu=/7733/DFPAudience;dc_seg=20285050;ord=" + aaxa + "?";
+
+
+if(digitalData){
+	if (digitalData.OrderPresentationPage){
+		if(digitalData.OrderPresentationPage.flowState){
+			if(digitalData.OrderPresentationPage.flowState.indexOf('purchase') != -1){
+				if(digitalData.OrderPresentationPage.product){
+					adf.createOrder({});
+					var adfpnm = digitalData.OrderPresentationPage.product.split(';');
+					for(var i = 1; i < adfpnm.length; i++){
+						adf.addProduct({
+							productid: adfpnm[i],
+							productname: adfpnm[i],
+							step: adf.Steps.Purchase
+						});
+						adf.Params.PageName = encodeURIComponent('LEAD|'+adfpnm[i]);
+						adf.Params.Divider = encodeURIComponent('|');
+						adf.Track(141717);
+					}
+				}
+			}
+		}
+	}
+	if (digitalData.SendYourPricePage){
+		if(digitalData.SendYourPricePage.flowState){
+			if(digitalData.SendYourPricePage.flowState.indexOf('purchase') != -1){
+				if(digitalData.SendYourPricePage.product){
+					adf.createOrder({});
+					var adfpnm = digitalData.SendYourPricePage.product.split(';');
+					for(var i = 1; i < adfpnm.length; i++){
+						adf.addProduct({
+							productid: adfpnm[i],
+							productname: adfpnm[i],
+							step: adf.Steps.Purchase
+						});
+						adf.Params.PageName = encodeURIComponent('LEAD|'+adfpnm[i]);
+						adf.Params.Divider = encodeURIComponent('|');
+						adf.Track(141717);
+					}
+				}
+			}
+		}
+	}
+	if (digitalData.CreateProfilePage){
+		if(digitalData.CreateProfilePage.flowState){
+			if(digitalData.CreateProfilePage.flowState.indexOf('scCheckout') != -1){
+				if(digitalData.CreateProfilePage.product){
+					adf.createOrder({});
+					var adfpnm = digitalData.CreateProfilePage.product.split(';');
+					for(var i = 1; i < adfpnm.length; i++){
+						adf.addProduct({
+							productid: adfpnm[i],
+							productname: adfpnm[i],
+							step: adf.Steps.Purchase
+						});
+						adf.Params.PageName = encodeURIComponent('LEAD|'+adfpnm[i]);
+						adf.Params.Divider = encodeURIComponent('|');
+						adf.Track(141717);
+					}
+				}
+			}
+		}
+	}
+	if (digitalData.ContactAgencyPage){
+		if(digitalData.ContactAgencyPage.flowState){
+			if(digitalData.ContactAgencyPage.flowState.indexOf('purchase') != -1){
+				if(digitalData.ContactAgencyPage.product){
+					adf.createOrder({});
+					var adfpnm = digitalData.ContactAgencyPage.product.split(';');
+					for(var i = 1; i < adfpnm.length; i++){
+						adf.addProduct({
+							productid: adfpnm[i],
+							productname: adfpnm[i],
+							step: adf.Steps.Purchase
+						});
+						adf.Params.PageName = encodeURIComponent('LEAD|'+adfpnm[i]);
+						adf.Params.Divider = encodeURIComponent('|');
+						adf.Track(141717);
+					}
+				}
+			}
+		}
+	}
+	if (digitalData.OpenHouseRegistrationPage){
+		if(digitalData.OpenHouseRegistrationPage.flowState){
+			if(digitalData.OpenHouseRegistrationPage.flowState.indexOf('purchase') != -1){
+				if(digitalData.OpenHouseRegistrationPage.product){
+					adf.createOrder({});
+					var adfpnm = digitalData.OpenHouseRegistrationPage.product.split(';');
+					for(var i = 1; i < adfpnm.length; i++){
+						adf.addProduct({
+							productid: adfpnm[i],
+							productname: adfpnm[i],
+							step: adf.Steps.Purchase
+						});
+						adf.Params.PageName = encodeURIComponent('LEAD|'+adfpnm[i]);
+						adf.Params.Divider = encodeURIComponent('|');
+						adf.Track(141717);
+					}
+				}
+			}
+		}
+	}
+	if (digitalData.campaign){
+		if(digitalData.campaign.state){
+			if(digitalData.campaign.state.indexOf('purchase') != -1){
+				if(digitalData.campaign.product){
+					adf.createOrder({});
+					var adfpnm = digitalData.campaign.product.split(';');
+					for(var i = 1; i < adfpnm.length; i++){
+						adf.addProduct({
+							productid: adfpnm[i],
+							productname: adfpnm[i],
+							step: adf.Steps.Purchase
+						});
+						adf.Params.PageName = encodeURIComponent('LEAD|'+adfpnm[i]);
+						adf.Params.Divider = encodeURIComponent('|');
+						adf.Track(141717);
+					}
+				}
+			}
+		}
+	}
+	if (digitalData.CaseViewPage){
+		if (digitalData.CaseViewPage.municipalName){
+			var adfkomune = digitalData.CaseViewPage.municipalName.replace(/oe/g,'ø').replace(/ae/g,'æ').replace(/aa/g,'å');
+				adf.Params.PageName = encodeURIComponent('KOMMUNE/'+adfkomune);
+				adf.Params.Divider = encodeURIComponent('/');
+				adf.Track(141717);
+		}
+		if(digitalData.CaseViewPage.caseNumber){
+			adf.createOrder({ sv8: digitalData.CaseViewPage.caseNumber  });
+			adf.addProduct({
+				productid: digitalData.CaseViewPage.caseNumber,
+				step: adf.Steps.View
+			});
+			adf.track(141717, 5487972);
+		}
+	}
+}
+
+if (location.href.match("www.edc.dk/kampagne/2014-uge-41") || location.href.match(/www.edc.dk\/saadan-saelger-du\/$/)) {
+    adfButton = document.querySelector(".btn--inverted input") || {};
+    adfButton.onclick = function() {
+        setTimeout(function() {
+            if (!document.querySelector(".form__input--error")) {
+                inputClass = document.title === "EDC : Kampagner : 2014 uge 41" ? ".col-12 input[type=\"radio\"]" : ".col-4 input[type=\"radio\"]";
+                adfOption = document.querySelectorAll(inputClass);
+                for (var i = 0; i < adfOption.length; i++) {
+                    if (adfOption[i].checked) {
+                        index = i + 1;
+                        TPName = "LEAD|" + document.title.replace(/\s:\s/g , ":") + "|Salgtjek" + index;
+                        adf.track(141717, TPName);
+                        break;
+                    };
+                };
+            }
+        }, 100);
+    };
+}
+(function(){
+    if (location.href.match(/sagsnr\=6790/)){
+        var tpname = location.search.match(/sagsnr\=\d+/) && location.search.match(/sagsnr\=\d+/)[0];
+        adf.track(1644106, tpname);
+    }
+})();
+}catch(e){}

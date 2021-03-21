@@ -1,0 +1,48 @@
+window.Adform.Tracking.TrackingPointId = 25034454;
+window.Adform.Tracking.TrackingPointName = "URL";
+try{
+(function(){
+    if (!window.adfCheckMirr && location.href.match(/sagsnr\=851/)){
+        var tpname = location.search.match(/sagsnr\=\d+/) && location.search.match(/sagsnr\=\d+/)[0];
+        adf.track(1130892, tpname);
+        window.adfCheckMirr = true;
+    }
+})();
+var adfVars = window.Adform.Tracking.Vars.Order || window.Adform.Tracking.Vars.Products || {};
+if (adfVars instanceof Array) {
+    adfVars = {itms: adfVars};
+};
+
+adf.track(945422, window.Adform.Tracking.TrackingPointName || window.Adform.Tracking.Vars.PageName || "unknown", adfVars);
+(function(){
+    if (location.href.match(/sagsnr\=851/)){
+        var tpname = location.search.match(/sagsnr\=\d+/) && location.search.match(/sagsnr\=\d+/)[0];
+        adf.track(1130892, tpname);
+    }
+})();
+(function(){
+    if (!window.adfCheckMirr && location.href.match(/sagsnr\=717/)){
+        var tpname = location.search.match(/sagsnr\=\d+/) && location.search.match(/sagsnr\=\d+/)[0];
+        adf.track(1378840, tpname);
+        window.adfCheckMirr = true;
+    }
+})();
+(function(){
+    if (location.href.match(/sagsnr\=874/)){
+        var tpname = location.search.match(/sagsnr\=\d+/) && location.search.match(/sagsnr\=\d+/)[0];
+        adf.track(1653563, tpname);
+    }
+})();
+(function(){
+    if (location.href.match(/sagsnr\=275/)){
+        var tpname = location.search.match(/sagsnr\=\d+/) && location.search.match(/sagsnr\=\d+/)[0];
+        adf.track(1119667, tpname);
+    }
+})();
+(function(){
+    if (location.href.match(/sagsnr\=6790/)){
+        var tpname = location.search.match(/sagsnr\=\d+/) && location.search.match(/sagsnr\=\d+/)[0];
+        adf.track(1644106, tpname);
+    }
+})();
+}catch(e){}
