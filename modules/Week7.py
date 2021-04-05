@@ -14,19 +14,19 @@ def edc_interaction(municipal):
     browser.implicitly_wait(5)
 
     # Accepts cookies:
-    button_cookies = browser.find_element_by_xpath("//div[@id='coiPage-1']/div[2]/div/button[3]").click()
+    browser.find_element_by_xpath("//div[@id='coiPage-1']/div[2]/div/button[3]").click()
 
     # Inputs municipal in search field:
-    input_area = browser.find_element_by_id('TextBoxSearch').send_keys(municipal)
+    browser.find_element_by_id('TextBoxSearch').send_keys(municipal)
 
     # Clicks dropdown for house type:
-    dropdown_type = browser.find_element_by_xpath('//*[@id="form1"]/div[2]/div/div[2]/div/div/div[2]/div/div[1]/div/div[1]/div/div[2]/div/a').click()
+    browser.find_element_by_xpath('//*[@id="form1"]/div[2]/div/div[2]/div/div/div[2]/div/div[1]/div/div[1]/div/div[2]/div/a').click()
 
     # Selects house type:
-    checkbox_type = browser.find_element_by_xpath('//*[@id="form1"]/div[2]/div/div[2]/div/div/div[2]/div/div[1]/div/div[1]/div/div[2]/div/div/span[1]').click()
+    browser.find_element_by_xpath('//*[@id="form1"]/div[2]/div/div[2]/div/div/div[2]/div/div[1]/div/div[1]/div/div[2]/div/div/span[1]').click()
 
     # Clicks search button:
-    button_search = browser.find_element_by_id('ContentContentPlaceHolder_MainContentPlaceHolder_ContentAreaNewFrontpage_ctl00_ctl02_ctl00_ctl00_ctl00_ctl01_ctl00_buttonSearch').click()
+    browser.find_element_by_id('ContentContentPlaceHolder_MainContentPlaceHolder_ContentAreaNewFrontpage_ctl00_ctl02_ctl00_ctl00_ctl00_ctl01_ctl00_buttonSearch').click()
 
     # Clicks drop-down to select number of results:
     browser.find_element_by_xpath('//*[@id="ContentContentPlaceHolder_MainContentPlaceHolder_ResultSortingAndItemsPerPage_DropDownListItemsPerPage_chosen"]').click()
